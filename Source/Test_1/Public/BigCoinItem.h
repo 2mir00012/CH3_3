@@ -5,7 +5,7 @@
 #include "BigCoinItem.generated.h"
 
 UCLASS()
-classTEST_1_API ABigCoinItem : public ACoinItem
+class TEST_1_API ABigCoinItem : public ACoinItem
 {
 	GENERATED_BODY()
 
