@@ -14,7 +14,7 @@ class UItemInterface : public UInterface
 };
 
 // 아이템 클래스가 구현할 함수 목록
-class TEST_1_API IItemInterface
+class VOD_API IItemInterface
 {
 	GENERATED_BODY()
 

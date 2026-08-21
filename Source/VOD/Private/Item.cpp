@@ -4,7 +4,7 @@
 #include "Engine/StaticMesh.h"
 #include "Materials/Material.h"
 
-DEFINE_LOG_CATEGORY(LogTEST_1);
+DEFINE_LOG_CATEGORY(LogVOD);
 
 AItem::AItem()
 {
@@ -30,19 +30,19 @@ AItem::AItem()
 	AudioComp = CreateDefaultSubobject<UAudioComponent>(TEXT("Audio"));
 	AudioComp->SetupAttachment(StaticMeshComp);
 
-	UE_LOG(LogTEST_1, Warning, TEXT("%s Constructor"), *GetName());
+	UE_LOG(LogVOD, Warning, TEXT("%s Constructor"), *GetName());
 }
 
 void AItem::PostInitializeComponents()
 {
 	Super::PostInitializeComponents();
-	UE_LOG(LogTEST_1, Warning, TEXT("%s PostInitializeComponents"), *GetName());
+	UE_LOG(LogVOD, Warning, TEXT("%s PostInitializeComponents"), *GetName());
 }
 
 void AItem::BeginPlay()
 {
 	Super::BeginPlay();
-	UE_LOG(LogTEST_1, Warning, TEXT("%s BeginPlay"), *GetName());
+	UE_LOG(LogVOD, Warning, TEXT("%s BeginPlay"), *GetName());
 	SetActorLocation(FVector(300.0f, 200.0f, 100.0f));
 	SetActorRotation(FRotator(0.0f, 45.0f, 0.0f));
 	SetActorScale3D(FVector(2.0f));
@@ -60,13 +60,13 @@ void AItem::Tick(float DeltaTime)
 
 void AItem::Destroyed()
 {
-	UE_LOG(LogTEST_1, Warning, TEXT("%s Destroyed"), *GetName());
+	UE_LOG(LogVOD, Warning, TEXT("%s Destroyed"), *GetName());
 	Super::Destroyed();
 }
 
 void AItem::EndPlay(const EEndPlayReason::Type EndPlayReason)
 {
-	UE_LOG(LogTEST_1, Warning, TEXT("%s EndPlay"), *GetName() );
+	UE_LOG(LogVOD, Warning, TEXT("%s EndPlay"), *GetName() );
 	Super::EndPlay(EndPlayReason);
 }
 

@@ -2,7 +2,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
-#include "MyCharacter.generated.h"
+#include "VODCharacter.generated.h"
 
 // SpringArm 클래스 전방 선언
 class USpringArmComponent;
@@ -12,13 +12,13 @@ class UCameraComponent;
 struct FInputActionValue;
 
 UCLASS()
-class TEST_1_API AMyCharacter : public ACharacter
+class VOD_API AVODCharacter : public ACharacter
 {
     GENERATED_BODY()
 
 public:
     // 생성자
-    AMyCharacter();
+    AVODCharacter();
 
 protected:
     // 3인칭 카메라 거리를 담당하는 SpringArm

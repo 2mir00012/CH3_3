@@ -9,7 +9,7 @@
 class USphereComponent;
 
 UCLASS()
-class TEST_1_API ABaseItem : public AActor, public IItemInterface
+class VOD_API ABaseItem : public AActor, public IItemInterface
 {
 	GENERATED_BODY()
 

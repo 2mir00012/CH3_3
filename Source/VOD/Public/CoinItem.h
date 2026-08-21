@@ -5,7 +5,7 @@
 #include "CoinItem.generated.h"
 
 UCLASS()
-class TEST_1_API ACoinItem : public ABaseItem
+class VOD_API ACoinItem : public ABaseItem
 {
 	GENERATED_BODY()
 

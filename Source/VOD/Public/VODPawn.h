@@ -2,16 +2,16 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Pawn.h"
-#include "MyPawn.generated.h"
+#include "VODPawn.generated.h"
 
 UCLASS()
-class TEST_1_API AMyPawn : public APawn
+class VOD_API AVODPawn : public APawn
 {
     GENERATED_BODY()
 
 public:
     // 생성자
-    AMyPawn();
+    AVODPawn();
     // 매 프레임 실행되는 함수
     virtual void Tick(float DeltaTime) override;
 

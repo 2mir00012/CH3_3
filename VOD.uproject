@@ -1,11 +1,11 @@
-{
+﻿{
 	"FileVersion": 3,
 	"EngineAssociation": "5.5",
 	"Category": "",
 	"Description": "",
 	"Modules": [
 		{
-			"Name": "Test_1",
+			"Name": "VOD",
 			"Type": "Runtime",
 			"LoadingPhase": "Default",
 			"AdditionalDependencies": [

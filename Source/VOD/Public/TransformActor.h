@@ -8,7 +8,7 @@
 
 UCLASS()
 
-class TEST_1_API ATransformActor : public AActor
+class VOD_API ATransformActor : public AActor
 
 {
 

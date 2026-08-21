@@ -5,7 +5,7 @@
 #include "MineItem.generated.h"
 
 UCLASS()
-class TEST_1_API AMineItem : public ABaseItem
+class VOD_API AMineItem : public ABaseItem
 {
 	GENERATED_BODY()
 

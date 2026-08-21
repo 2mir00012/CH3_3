@@ -2,14 +2,14 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/GameMode.h"
-#include "MyGameMode.generated.h"
+#include "VODGameMode.generated.h"
 
 UCLASS()
-class AMyGameMode : public AGameMode
+class AVODGameMode : public AGameMode
 {
     GENERATED_BODY()
 
 public:
     // 생성자
-    AMyGameMode();
+    AVODGameMode();
 };

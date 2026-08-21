@@ -5,7 +5,7 @@
 #include "HealingItem.generated.h"
 
 UCLASS()
-class TEST_1_API AHealingItem : public ABaseItem
+class VOD_API AHealingItem : public ABaseItem
 {
 	GENERATED_BODY()
 

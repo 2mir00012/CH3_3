@@ -1,4 +1,4 @@
-﻿#include "MyPlayerController.h"
+﻿#include "VODPlayerController.h"
 
 // Enhanced Input Subsystem 사용
 #include "EnhancedInputSubsystems.h"
@@ -7,7 +7,7 @@
 // FInputActionValue 사용
 #include "InputActionValue.h"
 
-AMyPlayerController::AMyPlayerController()
+AVODPlayerController::AVODPlayerController()
     : InputMappingContext(nullptr),
     UIInputMappingContext(nullptr),
     MoveAction(nullptr),
@@ -19,7 +19,7 @@ AMyPlayerController::AMyPlayerController()
 {
 }
 
-void AMyPlayerController::BeginPlay()
+void AVODPlayerController::BeginPlay()
 {
     // 부모 PlayerController의 BeginPlay 실행
     Super::BeginPlay();
@@ -38,7 +38,7 @@ void AMyPlayerController::BeginPlay()
         }
     }
 }
-void AMyPlayerController::SetupInputComponent()
+void AVODPlayerController::SetupInputComponent()
 {
     // 부모 PlayerController의 입력 설정 실행
     Super::SetupInputComponent();
@@ -53,7 +53,7 @@ void AMyPlayerController::SetupInputComponent()
             // IA_ToggleUI 입력이 시작되는 순간
             // ToggleMappingContext 함수 실행
             EnhancedInputComponent->BindAction(
-                ToggleUIAction, ETriggerEvent::Started, this, &AMyPlayerController::ToggleMappingContext);
+                ToggleUIAction, ETriggerEvent::Started, this, &AVODPlayerController::ToggleMappingContext);
         }
     }
 }
@@ -63,7 +63,7 @@ void AMyPlayerController::SetupInputComponent()
 // IMC 전환
 // ================================
 
-void AMyPlayerController::ToggleMappingContext(const FInputActionValue & Value)
+void AVODPlayerController::ToggleMappingContext(const FInputActionValue & Value)
 {
     // 현재 PlayerController의 Local Player 가져오기
     if (ULocalPlayer* LocalPlayer = GetLocalPlayer())

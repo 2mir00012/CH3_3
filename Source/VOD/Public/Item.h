@@ -7,10 +7,10 @@
 #include "Components/AudioComponent.h"
 #include "Item.generated.h"
 
-DECLARE_LOG_CATEGORY_EXTERN(LogTEST_1, Warning, All);
+DECLARE_LOG_CATEGORY_EXTERN(LogVOD, Warning, All);
 
 UCLASS()
-class TEST_1_API AItem : public AActor
+class VOD_API AItem : public AActor
 {
 	GENERATED_BODY()
 

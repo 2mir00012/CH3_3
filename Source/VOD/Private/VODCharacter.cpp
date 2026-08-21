@@ -1,6 +1,6 @@
-﻿#include "MyCharacter.h"
+﻿#include "VODCharacter.h"
 // PlayerController
-#include "MyPlayerController.h"
+#include "VODPlayerController.h"
 // Enhanced Input
 #include "EnhancedInputComponent.h"
 // Camera
@@ -11,7 +11,7 @@
 #include "GameFramework/CharacterMovementComponent.h"
 
 
-AMyCharacter::AMyCharacter()
+AVODCharacter::AVODCharacter()
 {
     // Tick을 사용하지 않으므로 비활성화
     PrimaryActorTick.bCanEverTick = false;
@@ -45,7 +45,7 @@ AMyCharacter::AMyCharacter()
 }
 
 // Input Action 연결
-void AMyCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
+void AVODCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
     // 부모 클래스의 입력 설정 실행
     Super::SetupPlayerInputComponent(PlayerInputComponent);
@@ -53,41 +53,41 @@ void AMyCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCompone
     if (UEnhancedInputComponent* EnhancedInput = Cast<UEnhancedInputComponent>(PlayerInputComponent))
     {
         // 현재 Controller를 우리가 만든 PlayerController로 Cast
-        if (AMyPlayerController* PlayerController = Cast<AMyPlayerController>(GetController()))
+        if (AVODPlayerController* PlayerController = Cast<AVODPlayerController>(GetController()))
         {
             // Move
             if (PlayerController->MoveAction)
             {
                 // 이동 입력 중 Move() 실행
-                EnhancedInput->BindAction(PlayerController->MoveAction, ETriggerEvent::Triggered, this, &AMyCharacter::Move);
+                EnhancedInput->BindAction(PlayerController->MoveAction, ETriggerEvent::Triggered, this, &AVODCharacter::Move);
             }
             // Jump
             if (PlayerController->JumpAction)
             {
                 // 점프 키를 누르는 동안
-                EnhancedInput->BindAction(PlayerController->JumpAction, ETriggerEvent::Started, this,&AMyCharacter::StartJump);
+                EnhancedInput->BindAction(PlayerController->JumpAction, ETriggerEvent::Started, this,&AVODCharacter::StartJump);
                 // 점프 키를 뗐을 때
-                EnhancedInput->BindAction(PlayerController->JumpAction, ETriggerEvent::Completed, this, &AMyCharacter::StopJump);
+                EnhancedInput->BindAction(PlayerController->JumpAction, ETriggerEvent::Completed, this, &AVODCharacter::StopJump);
             }
             // Look
             if (PlayerController->LookAction)
             {
                 // 마우스가 움직이는 동안 Look() 실행
-                EnhancedInput->BindAction(PlayerController->LookAction, ETriggerEvent::Triggered, this, &AMyCharacter::Look);
+                EnhancedInput->BindAction(PlayerController->LookAction, ETriggerEvent::Triggered, this, &AVODCharacter::Look);
             }
             // Sprint
             if (PlayerController->SprintAction)
             {
                 // Shift 입력 중
-                EnhancedInput->BindAction(PlayerController->SprintAction, ETriggerEvent::Triggered, this, &AMyCharacter::StartSprint);
+                EnhancedInput->BindAction(PlayerController->SprintAction, ETriggerEvent::Triggered, this, &AVODCharacter::StartSprint);
                 // Shift 입력 종료
-                EnhancedInput->BindAction(PlayerController->SprintAction, ETriggerEvent::Completed, this, &AMyCharacter::StopSprint);
+                EnhancedInput->BindAction(PlayerController->SprintAction, ETriggerEvent::Completed, this, &AVODCharacter::StopSprint);
             }
         }
     }
 }
 // Move
-void AMyCharacter::Move(const FInputActionValue& Value)
+void AVODCharacter::Move(const FInputActionValue& Value)
 {
     // Controller가 없다면 이동 처리 불가
     if (!Controller)
@@ -110,7 +110,7 @@ void AMyCharacter::Move(const FInputActionValue& Value)
     }
 }
 // Jump
-void AMyCharacter::StartJump(const FInputActionValue& Value)
+void AVODCharacter::StartJump(const FInputActionValue& Value)
 {
     // ACharacter의 기본 Jump 함수 실행
     Jump();
@@ -121,7 +121,7 @@ void AMyCharacter::StartJump(const FInputActionValue& Value)
     // 현재 점프 횟수 출력
     UE_LOG(LogTemp, Warning, TEXT("Jump Count: %d"), JumpCount);
 }
-void AMyCharacter::StopJump(const FInputActionValue& Value)
+void AVODCharacter::StopJump(const FInputActionValue& Value)
 {
     // 점프 입력 종료
     StopJumping();
@@ -129,7 +129,7 @@ void AMyCharacter::StopJump(const FInputActionValue& Value)
     UE_LOG(LogTemp, Warning, TEXT("StopJump Called"));
 }
 // Look
-void AMyCharacter::Look(const FInputActionValue& Value)
+void AVODCharacter::Look(const FInputActionValue& Value)
 {
     // 마우스 X, Y 입력값 가져오기
     FVector2D LookInput = Value.Get<FVector2D>();
@@ -139,7 +139,7 @@ void AMyCharacter::Look(const FInputActionValue& Value)
     AddControllerPitchInput(LookInput.Y * MouseSensitivity);
 }
 // Sprint
-void AMyCharacter::StartSprint(const FInputActionValue& Value)
+void AVODCharacter::StartSprint(const FInputActionValue& Value)
 {
     // CharacterMovementComponent 확인
     if (GetCharacterMovement())
@@ -150,7 +150,7 @@ void AMyCharacter::StartSprint(const FInputActionValue& Value)
         GetCharacterMovement()->MaxWalkSpeed = SprintSpeed;
     }
 }
-void AMyCharacter::StopSprint(const FInputActionValue& Value)
+void AVODCharacter::StopSprint(const FInputActionValue& Value)
 {
     // CharacterMovementComponent 확인
     if (GetCharacterMovement())

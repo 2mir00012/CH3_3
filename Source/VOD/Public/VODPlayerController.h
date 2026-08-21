@@ -2,7 +2,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/PlayerController.h"
-#include "MyPlayerController.generated.h"
+#include "VODPlayerController.generated.h"
 
 // Input Mapping Context 전방 선언
 class UInputMappingContext;
@@ -12,13 +12,13 @@ class UInputAction;
 struct FInputActionValue;
 
 UCLASS()
-class AMyPlayerController : public APlayerController
+class VOD_API AVODPlayerController : public APlayerController
 {
     GENERATED_BODY()
 
 public:
     // 생성자
-    AMyPlayerController();
+    AVODPlayerController();
     // IMC_Character를 연결할 변수
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Input")
     UInputMappingContext* InputMappingContext;

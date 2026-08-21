@@ -5,7 +5,7 @@
 #include "KeyItem.generated.h"
 
 UCLASS()
-class TEST_1_API AKeyItem : public ABaseItem
+class VOD_API AKeyItem : public ABaseItem
 {
 	GENERATED_BODY()
 

@@ -1,15 +1,15 @@
-// Copyright Epic Games, Inc. All Rights Reserved.
+﻿// Copyright Epic Games, Inc. All Rights Reserved.
 
 using UnrealBuildTool;
 using System.Collections.Generic;
 
-public class Test_1Target : TargetRules
+public class VODTarget : TargetRules
 {
-	public Test_1Target(TargetInfo Target) : base(Target)
+	public VODTarget(TargetInfo Target) : base(Target)
 	{
 		Type = TargetType.Game;
 		DefaultBuildSettings = BuildSettingsVersion.V5;
 		IncludeOrderVersion = EngineIncludeOrderVersion.Unreal5_5;
-		ExtraModuleNames.Add("Test_1");
+		ExtraModuleNames.Add("VOD");
 	}
 }

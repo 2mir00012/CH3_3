@@ -1,17 +1,17 @@
-﻿#include "MyPawn.h"
+﻿#include "VODPawn.h"
 
-AMyPawn::AMyPawn()
+AVODPawn::AVODPawn()
 {
     // Tick을 사용해야 하므로 true
     PrimaryActorTick.bCanEverTick = true;
 }
 
-void AMyPawn::BeginPlay()
+void AVODPawn::BeginPlay()
 {
     Super::BeginPlay();
 }
 
-void AMyPawn::Tick(float DeltaTime)
+void AVODPawn::Tick(float DeltaTime)
 {
     Super::Tick(DeltaTime);
 
