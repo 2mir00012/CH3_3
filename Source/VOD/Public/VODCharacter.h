@@ -2,13 +2,15 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
+#include "Perception/AIPerceptionStimuliSourceComponent.h"
 #include "VODCharacter.generated.h"
 
-// SpringArm 클래스 전방 선언
+// 전방 선언
 class USpringArmComponent;
-// Camera 클래스 전방 선언
 class UCameraComponent;
-// Enhanced Input에서 입력값을 전달받기 위한 구조체 전방 선언
+class UWidgetComponent;
+
+// Enhanced Input 값
 struct FInputActionValue;
 
 UCLASS()
@@ -19,23 +21,38 @@ class VOD_API AVODCharacter : public ACharacter
 public:
     // 생성자
     AVODCharacter();
+    // 머리 위 HP Widget
+    UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "UI")
+    UWidgetComponent* OverheadWidget;
+    // 현재 체력 반환
+    UFUNCTION(BlueprintPure, Category = "Health")
+    int32 GetHealth() const;
+    // 최대 체력 반환
+    UFUNCTION(BlueprintPure, Category = "Health")
+    float GetMaxHealth() const;
+    // 체력 회복
+    UFUNCTION(BlueprintCallable, Category = "Health")
+    void AddHealth(float Amount);
 
 protected:
-    // 3인칭 카메라 거리를 담당하는 SpringArm
+    // 게임 시작
+    virtual void BeginPlay() override;
+    // AI 감지 대상 등록 컴포넌트
+    UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "AI")
+    UAIPerceptionStimuliSourceComponent* StimuliSource;
+    // 카메라 거리 조절
     UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Camera")
     USpringArmComponent* SpringArmComp;
-    // 실제 화면을 보여주는 Camera
+    // 플레이어 카메라
     UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Camera")
     UCameraComponent* CameraComp;
-
-    // 이동 속도
     // 기본 이동 속도
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Movement")
     float NormalSpeed;
-    // 기본 속도의 몇 배로 스프린트할지 설정
+    // 스프린트 속도 배율
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Movement")
     float SprintSpeedMultiplier;
-    // 최종적으로 계산된 스프린트 속도
+    // 실제 스프린트 속도
     UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Movement")
     float SprintSpeed;
     // 점프 횟수
@@ -44,13 +61,22 @@ protected:
     // 마우스 감도
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Camera")
     float MouseSensitivity;
-
+    // 최대 체력
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Health")
+    float MaxHealth;
+    // 현재 체력
+    UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Health")
+    float Health;
+    // 사망 처리
+    UFUNCTION(BlueprintCallable, Category = "Health")
+    virtual void OnDeath();
+    // 머리 위 HP UI 갱신
+    void UpdateOverheadHP();
+    // 데미지 처리
+    virtual float TakeDamage(float DamageAmount, struct FDamageEvent const& DamageEvent, AController* EventInstigator, AActor* DamageCauser ) override;
     // 입력 바인딩
-    // Input Action과 Character 함수를 연결
     virtual void SetupPlayerInputComponent(UInputComponent* PlayerInputComponent) override;
-
-    // 캐릭터 동작 함수
-    // WASD 이동
+    // 이동
     UFUNCTION()
     void Move(const FInputActionValue& Value);
     // 점프 시작
@@ -59,7 +85,7 @@ protected:
     // 점프 종료
     UFUNCTION()
     void StopJump(const FInputActionValue& Value);
-    // 마우스 시점 회전
+    // 카메라 회전
     UFUNCTION()
     void Look(const FInputActionValue& Value);
     // 스프린트 시작

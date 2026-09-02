@@ -10,7 +10,8 @@ class VOD_API ABigCoinItem : public ACoinItem
 	GENERATED_BODY()
 
 public:
+	// 생성자
 	ABigCoinItem();
-	// 큰 코인이 사용되었을 때 호출
+	// 큰 코인 획득 처리
 	virtual void ActivateItem(AActor* Activator) override;
 };

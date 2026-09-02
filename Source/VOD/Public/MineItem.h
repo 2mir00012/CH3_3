@@ -4,19 +4,31 @@
 #include "BaseItem.h"
 #include "MineItem.generated.h"
 
+// 전방 선언
+class USphereComponent;
+class UParticleSystem;
+class USoundBase;
+
 UCLASS()
 class VOD_API AMineItem : public ABaseItem
 {
 	GENERATED_BODY()
 
 public:
+	// 생성자
 	AMineItem();
 
 protected:
-	// 폭발 범위를 확인하는 충돌 컴포넌트
+	// 폭발 범위 충돌 영역
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Item|Component")
 	USphereComponent* ExplosionCollision;
-	// 폭발까지 걸리는 시간
+	// 폭발 파티클
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Item|Effects")
+	UParticleSystem* ExplosionParticle;
+	// 폭발 사운드
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Item|Effects")
+	USoundBase* ExplosionSound;
+	// 폭발까지의 대기 시간
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Mine")
 	float ExplosionDelay;
 	// 폭발 범위
@@ -25,10 +37,12 @@ protected:
 	// 폭발 데미지
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Mine")
 	int ExplosionDamage;
-	// 폭발 타이머 관리
+	// 중복 폭발 방지
+	bool bHasExploded;
+	// 폭발 Timer
 	FTimerHandle ExplosionTimerHandle;
-	// 지뢰가 사용되었을 때 호출
+	// 지뢰 활성화
 	virtual void ActivateItem(AActor* Activator) override;
-	// 실제 폭발 처리 함수
+	// 실제 폭발 처리
 	void Explode();
 };

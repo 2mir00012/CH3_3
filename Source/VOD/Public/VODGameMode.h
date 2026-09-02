@@ -5,7 +5,7 @@
 #include "VODGameMode.generated.h"
 
 UCLASS()
-class AVODGameMode : public AGameMode
+class VOD_API AVODGameMode : public AGameMode
 {
     GENERATED_BODY()
 

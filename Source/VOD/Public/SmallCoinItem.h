@@ -10,7 +10,8 @@ class VOD_API ASmallCoinItem : public ACoinItem
 	GENERATED_BODY()
 
 public:
+	// 생성자
 	ASmallCoinItem();
-	// 작은 코인이 사용되었을 때 호출
+	// 작은 코인 획득 처리
 	virtual void ActivateItem(AActor* Activator) override;
 };

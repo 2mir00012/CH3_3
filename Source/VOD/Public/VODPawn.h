@@ -12,19 +12,18 @@ class VOD_API AVODPawn : public APawn
 public:
     // 생성자
     AVODPawn();
-    // 매 프레임 실행되는 함수
+    // 매 프레임 이동 처리
     virtual void Tick(float DeltaTime) override;
 
 protected:
-    // 게임 시작 시 한 번 실행
+    // 게임 시작
     virtual void BeginPlay() override;
-    // Pawn이 이동하는 속도
+    // 이동 속도
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Movement")
     float MoveSpeed = 200.0f;
     // 이동 방향
-    // 1 = 전진
-    // -1 = 후진
+    // 1 = 전진, -1 = 후진
     float MoveDirection = 1.0f;
-    // 이동 방향을 바꾸기 위한 시간 측정
+    // 방향 변경 시간 측정
     float ElapsedTime = 0.0f;
 };

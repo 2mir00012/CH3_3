@@ -10,10 +10,11 @@ class VOD_API AHealingItem : public ABaseItem
 	GENERATED_BODY()
 
 public:
+	// 생성자
 	AHealingItem();
-	// 플레이어가 회복할 체력
+	// 회복할 체력
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Healing")
 	int32 HealAmount;
-	// 힐링 아이템이 사용되었을 때 호출
+	// 회복 효과 실행
 	virtual void ActivateItem(AActor* Activator) override;
 };

@@ -1,21 +1,33 @@
 ﻿#include "CoinItem.h"
+#include "Engine/World.h"
+#include "VODGameState.h"
 
 ACoinItem::ACoinItem()
 {
-	// 코인의 기본 점수 설정
+	// 기본 점수
 	PointValue = 0;
-	// 기본 코인 타입 설정
+	// 기본 코인 종류
 	ItemType = "DefaultCoin";
 }
-// 코인 공통 획득 기능
 void ACoinItem::ActivateItem(AActor* Activator)
 {
-	// 플레이어 태그 확인
+	// 공통 획득 효과 실행
+	Super::ActivateItem(Activator);
+	// Player가 획득했는지 확인
 	if (Activator && Activator->ActorHasTag("Player"))
 	{
-		// 점수 획득 디버그 메시지
-		GEngine->AddOnScreenDebugMessage(-1, 2.0f, FColor::Green, FString::Printf(TEXT("Player gained %d points!"), PointValue));
-		// 아이템 제거
+		if (UWorld* World = GetWorld())
+		{
+			// 현재 GameState 가져오기
+			if (AVODGameState* GameState = World->GetGameState<AVODGameState>())
+			{
+				// 점수 증가
+				GameState->AddScore(PointValue);
+				// 코인 획득 수 증가
+				GameState->OnCoinCollected();
+			}
+		}
+		// 코인 제거
 		DestroyItem();
 	}
 }
